@@ -76,13 +76,14 @@ The three database models that appeared on the scene:
 Scientist have continued to develop database models that have been found useful in some categories of applications.
 
 ### 1.3.1 LOOKING AT THE HISTORICAL BACKGROUND OF THE COMPETING MODELS
+N/A
 
 ### 1.3.2 THE HIERARCHICAL DATABASE MODEL
 IMS was the first hierarchical database developed and is still in use today because IBM has continually upgraded it.
 
 > Defn. The *hierarchical database model* organizes data into levels, where each level contains a single category of data, and parent-chield relationships between levels. Each parent item can have multiple children, but each child item can have one and only one parent.
 
-Three realtionships can occur between objects in a database:
+Three relationships can occur between objects in a database:
 - **One-to-one relationship:** one object of the first type is related to one and only one object of the second type.
 - **One-to-many relationship:** one object of the first type is related to multiple objects of the second type.
 - **Many-to-many relationship:** multiple objects of the first type are related to multiple objects of the second type.
@@ -97,14 +98,14 @@ Even more damaging than the wasted  space from redundant data is the possibility
 
 > Defn. *Modification anomaly* is an inconsistency in the data after a modification is made.
 
-[^1]: see Figure 1-1 and 1-2 in the book/handwritten notes.
+[^1]: see Fig. 1-01 and 1-02.
 
 ### 1.3.3 THE NETWORK DATABASE MODEL
 A year after IMS was first run, the network database model was described. 
 
 The designers of the *network model* opted for an architecture that does not duplicate items, but instead increases the number of relationships associated with some items[^2].
 
-[^2]: see Figure 1-3 in the book/handwritten notes.
+[^2]: see Fig. 1-03.
 
 ### 1.3.4 THE RELATIONAL DATABASE MODEL
 In 1970, a year after the network database model, Dr. Edgar F. "Ted" Codd, also at IBM, [published a paper](https://dl.acm.org/doi/10.1145/362384.362685) introducing the *relational database* model. 
@@ -118,7 +119,7 @@ The original definition:
 
 Each row in a table must be uniquely identifiable -- every table in a relational databse must have a *primary key*[^3].
 
-[^3]: see Figure 1-4 in the book/handwritten notes.
+[^3]: see Fig. 1-04.
 
 The idea of separating closely related things from more distantly related things by dividing things up into tables was one the main factors distinguishing the relational model from the hierarchical and network models.
 
@@ -170,6 +171,171 @@ This model is particularly appropriate for large systems consisting of clusters 
 - Data and applications that already existed for an existing database system would be very difficult to convert to work with a relational DBMS.
 - Employees would have to learn an entirely new way of dealing with data.
 
-Databases structured according to the heirarchical and network models had excellent performance, they were difficult to maintain. 
+mind Databases structured according to the heirarchical and network models had excellent performance, they were difficult to maintain. 
 
-The performance improvements in processors, memories and hard disk combined to dramatically improve the perfo∏rmance of relational database systems, making them more competitive with hierarchical and network systems.
+The performance improvements in processors, memories and hard disk combined to dramatically improve the performance of relational database systems, making them more competitive with hierarchical and network systems.
+
+# CHAPTER 2 MODELING A SYSTEM
+SQL is the language that you use to create and operate on relational databases. Before you can do that database creation, you must first create a conceptual model for the system to built. In order to develop a database system that delivers the results, performance and reliability that the users need, you must understand in a highly detailed way what those need are. 
+
+After perfecting the model through much dialog with the user, you need to translate the model into something that can be implemented with a relational database.
+
+## 2.1 CAPTURING THE USERS' DATA MODEL
+the whole purpose of a database is to hold useful data and enable one or more people to selectively retrieve and use the data they want. more often than not, people's ideas of what should be included in the database and what they want to get out of it are not terribly precise. the concepts each interested party may have in mind comes from their own data models. when all those data models from various users are combined, they become one (huge) data model.
+
+to build a database system that meets the needs of the users, you must understand this collective data model.
+
+beyond understanding the data model, you must help clarify it so that it can become the basis for a useful database system. 
+
+### 2.1.1 IDENTIFYING AND INTERVIEWING STAKEHOLDERS
+the first step in discovering the users' data model is to find out who the users are. 
+
+identifying the database users goes beyond the people who actually sit in front of a PC and run your database application. you need to find these people, interview them, and find out how they envision the system. try to gain as complete an understanding of the current situation as possible:
+
+- if the functions to be performed by the new system are already being performed, by either a manual system or an obsolete computerized system, explain how the current system works?
+- what do the users like about the current system?
+- what do the users not like about the current system?
+- what is the motivation for moving to a new system?
+- what desirable features are missing from what they have now?
+- what annoying aspects of the current system are frustrating them?
+
+### 2.1.2 RECONCILING CONFLICTING REQUIREMENTS
+as the set of stakeholders will be diverse, so will their ideas of what the system should be and do. if such ideas are not reconciled, you run the risk of developing a system that is not satisfactory to anybody.
+
+it is your responsibility as the database developer to develop a consensus. as part of your responsiblity, you need to separate the stated requirement of the stakeholders into three categories:
+- **mandatory:** a feature that is absolutely essential. the system would be of limited value without it
+- **significiant:** a feature that is important and that adds greatly to the value of the system
+- **optional:** a feature that would be nice to have, but is not actually needed.
+
+you need to convince all the stakeholders that their cherished features that fall into the optional category must be deleted or changed if they conflit with someone else’s mandatory or significant feature. also, some stakeholders have more clout than others. you must be sensitive to this.
+
+### 2.1.3 OBTAINING STAKEHOLDER BUY-IN
+one way or another, you will have to convince all the stakeholders to agree on one set of features that will be included in the system you are planning to build. get it in writing. enumerate everything that will be provided in a formal Statement of Requirements, and then have every stakeholder sign off on it.
+
+## 2.2 TRANSLATING THE USERS' DATA MODEL TO A FORMAL ENTITY-RELATIONSHIP MODEL
+after you outline a coherent users’ data model in a clear, concise, concrete form, the real work begins. you must transform that model into a relational model that serves as the basis for a database. a helpful technique is to first translate it into one of several formal modeling systems that clarify the various entities in the users’ model and the relationships between them. probably the most popular of these formal modeling techniques is the Entity-Relationship (ER) model.
+
+in order to design a relational database properly, you must have a good understanding of database structure.
+  
+### 2.2.1 ENTITY-RELATIONSHIP MODELING TECHNIQUES
+in 1976, six years after Dr. Codd published the relational model, Dr. Peter Chen [published a paper](https://dl.acm.org/doi/10.1145/320434.320440) introducing the ER model. 
+
+>N.B. The ER model was an important factor in turning theory into practice because one of the strengths of the ER model is its generality. 
+
+Any ER model, big or small, consists of four major components: entities, attributes, identifiers, and relationships.
+
+#### Entities
+>Defn. an *entity* is something that the user can identify and that they want to keep track of. a group of entities with common characteristics is called an *entity class*. any one example of an entity class is an *entity instance*.
+
+#### Attributes
+>Defn. aspects of an entity are referred to as *attributes*.
+
+#### Identifiers
+in order to do anything with data, you must be able to distinguish one piece of data from another. that means each piece of data must have an identifying characteristic that is unique. in the context of a relational database, a “piece of data” is a row in a two-dimensional table. 
+
+|ER Model       |Relational Database|
+|:---:          |:---:              |
+|Entity Class   |Table              |
+|Entity Instance|Row                |
+|Attribute      |Column             | 
+
+nonunique identifiers are also possible.
+
+another way, however is to use a *composite identifier* which is a combination of several attributes that together are sufficient to uniquely identify a record.
+
+#### Relationships 
+any nontrivial relational database contain more than one table. when you have more than one table, the question arises as to how the tables relate to each other. relationships can differ in the number of entities that they relate.
+
+##### Degree-Two Relationships
+>Defn. *degree-two relationships* are ones that relate one entity directly to one other entity. degree-two relationships are also called *binary* relationships[^4].
+
+[^4]: see Fig. 2-03.
+
+degree-two relationships are the simplest possible relationships and just about any system that you likely want to model consists of entities connected by degree-two relationships, although more complex relationships are possible.
+
+there three kinds of binary relationships:
+- **One-to-one (1:1) relationship:** relates one instance of one entity class to one instance of a second entity class
+- **One-to-many (1:N) relationship:** relates one instance of one entity class to multiple instances of a second entity class
+- **Many-to-many (N:M) relationship:** relates multiple instances of one entity class to multiple instances of a second entity class
+
+many-to-many relationships can be very confusing are not well represented by the two-dimensional table architecture of a relational database. consequently, such relationships are almost always converted to simpler one-to-many relationships before they are used to build a database
+
+##### Complex Relationships
+*degree-three* relationships are possible, but rarely occur in practice. relationships of degree higher that three probably mean you need to redesign your system to use simpler relationships.
+
+>Tip. altough it is possible to build a system with such relationships, it is probably better in most cases to restructure the system in terms of binary relationships.
+
+### 2.2.2 DRAWING ENTITY-RELATIONSHIP DIAGRAMS
+>Defn. systems represented by the ER model are unversally depicted in the form of diagrams. these are called *ER diagrams*.
+
+>Defn. for ER models, *cardinality* is the number of entity instances in a entity class.
+
+In the context of relational databases, a relationship between two tables has two cardinalities of interest: the cardinalities of the two tables. we look at these two cardinalities in two primary ways: maximum cardinality and mimimum cardinality.
+
+##### Maximum Cardinality
+>Defn. the *maximum cardinality* of one side of a relationship shows the largest number of entity instances **that can be** on that side of the relationship.
+
+##### Minimum Cardinality
+>Defn. the *minimum cardinality* shows the least number of entity instances that can be on that side of the relationship. 
+
+in some cases, the least number of entity instances that can be on one side of a relationship can be zero. in other cases, the minimum cardinality could be one or more.
+
+in an ER diagram, the slash mark on the side of an entity class denotes a mimimum cardinaly of *mandatory*, meaning at least one instance must exist. the oval on the side of an entity class denotes a mimium cardinality of *optional*[^5].
+
+[^5]: see Fig. 2-08. 
+
+>N.B. minimum cardinality is often difficult to determine. you’ll need to question the users very carefully and explore unusual cases before deciding how to model minimum cardinality.
+
+if the minimum cardinality of one side of a relationship is mandatory, that means the cardinality of that side is at least one, but might be more.
+
+>Tip. primarily, you are interested in whether the minimum cardinality on a side of a relationship is either mandatory or optional and less interested in whether a mandatory minimum cardinality has a value of one or more than one. the difference between mandatory and optional is the difference between an entity exists or not.
+
+### 2.2.3 UNDERSTANDING ADVANCED ER MODEL CONCEPTS
+subtle differences in the way users model their system can modify the way minimum cardinality is modeled.
+
+more complex situations are bound to arise.
+
+##### Strong Entities and Weak Entities
+all entities are not created equal. 
+
+>Defn. an entity that does not depend on any other entity for its existence is considered a *strong entity*
+
+strong entities are represented in ER diagrams as rectangles with sharp corners.
+
+>Defn. any entity that is existense-dependent on another entity is a *weak entity*.
+
+in an ER diagram, a weak entity is represented with a box that has rounded corners. the diamond that shows the relationship between a weak entity and its corresponding strong entity also has rounded corners.[^6].
+
+[^6]: see Fig. 2-11.
+
+##### ID-Dependent Entities
+>Defn. a special case of a weak entity is one that depends on a strong entity not only for its existence, but also for its identity. this is called an *ID-dependent entity*.
+
+##### Supertype and subtype entities
+in some databases, you may find some entity classes that might actually share attributes with other entity classes. 
+
+Supertype/subtype relationships borrow the concept of *inheritance* from object-oriented programming. the attributes of the *supertype entity* are inherited by the subtype entities. each *subtype entity* has additional attributes that it does not necessarily share with the other subtype entities.
+
+in an ER diagram, the `$\epsilon$` next to each relationship line signifies that the lower entity is a subtype of the higher entity. the curved arc with a number 1 at the right represents the fact that every member of supertype entity must be a member of one of the subtypes entities. it is possible in some models that an element could be a member of a supertype without being a member of any of the subtypes[^7].
+
+[^7]: see Fig. 2-13.
+
+the supertype and subtypes entities in the ER model correspond to supertables and subtables in a relational database. A supertable can have multiple subtables and a subtable can have multiple supertables. the relationship between a supertable and a subtable is always one-to-one.
+
+##### Incorporating Business Rules
+sometimes you may not find important business rules written down anywhere. they may just be things that everyone in the organization understands. it is important to conduct an in-depth interview of everyone involved to fish out any business rules that people failed to mention when the job of creating the database was first described to you.
+
+### 2.2.4 A SIMPLE EXAMPLE OF AN ER MODEL
+N/A
+
+### 2.2.5 A SLIGHTLY MORE COMPLEX EXAMPLE
+N/A
+
+### 2.2.6 PROBLEMS WITH COMPLEX RELATIONSHIPS
+it is common practice to convert a many-to-many relationship into two one-to-many relationships, both connected to a new entity that lies between the original two. you can make that conversion with no loss of accuracy and the problem of how to store things disappears. 
+
+### 2.2.7 SIMPLIFLYING RELATIONSHIPS USING NORMALIZATION
+even after you elimate all the many-to-many relationships in an ER model, there can still be problems if you have not conceptualized your entities in the simplest way. the next step in the design procress is to examine your model and see if adding, changing or deleting data can cause incosistencies or even outright wrong information to be retained in your database. such problems are called *anomalies*. this process of model adjustment is called *normalization*.
+
+### 2.2.8 TRANSLATING AN ER MODEL INTO A RELATIONAL MODEL
+after you’re satisfied that your ER model is not only correct but economical and robust, the next step is to translate it into a relational model. the relational model is the basis for all relational DBMS.

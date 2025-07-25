@@ -25,10 +25,11 @@ Adrian Hansen 232 Glenwood Court Anaheim CA92640
 |Advantages|Disadvantages|
 |----------|-------------|
 |**Storage requirements are minimized.** In the early days of electronic computers, storage was relatively expensive, so system designers were highly motivated to accomplish their tasks using as little space as possible.|**Updating the data's structure can be a huge task.** If the metadata about the structure of the data is in the program rather than the data itself, all the programs that have access that data must be modified whenever the data structure is changed.|
-|**Operations on the data can be fast.** The program interacts directly with the data, no database management system (DBMS) in the middle.|**Flat file systems provide no protection of individual data elements.**|
+|**Operations on the data can be fast.** The program interacts directly with the data, no DBMS in the middle.|**Flat file systems provide no protection of individual data elements.**|
 ||**Speed can be compromised.** Accessing records in a large flat file can actually be slower than a similar access in a database because flat file systems do not support indexing.|
 ||**Portability becomes an issue,** When hardware becomes obsolete and the system must be migrated. All the applications will have to be changed to reflect the new way of accessing the data.| 
 
+>Abbr. DMBS: Database management system.
 ### 1.1.3 MANAGING DATA WITH SIMPLE PROGRAMS
 
 The major selling point of database systems is that the metadata resides on the data end of the system rather than the program. The program makes *logical* requests for data and the DBMS translates those logial requests into commands that go out to the physical storage hardware. 
@@ -62,7 +63,10 @@ Retrievals are performed by queries. A modern DBMS analyzes a query that is pres
 
 > THE FIRST DATABASE SYSTEM
 > ---
-> The first true database system IMS (Information Management System) was developed by IBM in the 1960s in support of NASA's Apollo moon landing program. Flat file systems were out of the question.
+> The first true database system IMS was developed by IBM in the 1960s in support of NASA's Apollo moon landing program. Flat file systems were out of the question.
+
+>Abbr. IMS: Information Management System.
+>Abbr. IBM: International Business Machines Corporation
 
 ## 1.3 EXAMINING COMPETING DATABASE MODELS
 
@@ -108,7 +112,7 @@ The designers of the *network model* opted for an architecture that does not dup
 [^2]: see Fig. 1-03.
 
 ### 1.3.4 THE RELATIONAL DATABASE MODEL
-In 1970, a year after the network database model, Dr. Edgar F. "Ted" Codd, also at IBM, [published a paper](https://dl.acm.org/doi/10.1145/362384.362685) introducing the *relational database* model. 
+In 1970, a year after the network database model, [Dr. Edgar F. "Ted" Codd](https://en.wikipedia.org/wiki/Edgar_F._Codd), also at IBM, [published a paper](https://dl.acm.org/doi/10.1145/362384.362685) introducing the *relational database* model. 
 
 It clearly had an advantage over the hierarchical model in that data redundancy was minimal; it had an advantage over the network model with its relatively simple relationships. Due to the complexity of the relational databse engine that it required, any implementation would be much slower than a comparable implentation of either the hierarchical or the network model. It was almost ten years before the first implementation of the relational model.
 
@@ -125,7 +129,7 @@ The idea of separating closely related things from more distantly related things
 
 #### Protecting the definition of relational databased with Codd's rules
 
-To fight the dilution of his model, Codd formulated 12 rules that served as criteria for determining     whether a database product was in fact relational.
+To fight the dilution of his model, Codd formulated [12 rules](https://en.wikipedia.org/wiki/Codd%27s_12_rules) that served as criteria for determining whether a database product was in fact relational.
 
 1. **The information rule:** data can be represented only one way, as values in columns positions within rows of a table.
 2. **The guaranteed access rule:** every value in a database must be accessible by specifying a table name, a column name and row. The row is specified by the value of the primary key.
@@ -142,7 +146,7 @@ To fight the dilution of his model, Codd formulated 12 rules that served as crit
 
 Over and above the original rules, in 1990, Codd added one more rule:
 
-**Rule Zero:** for any system that is advertised as, or is claimed to be, a relational database management system, that system must be able to manage databases entirely through its relational capabilities, no matter what additional capabilities the system may support.
+**Rule Zero:** for any system that is advertised as, or is claimed to be, a relational DBMS, that system must be able to manage databases entirely through its relational capabilities, no matter what additional capabilities the system may support.
 
 #### Highlighting the relational database model's inherent flexibility
 The architecture of a relational database is such that it is much easier to restructure a relational database than it is to restructure either a hierarchical or network database. 
@@ -150,7 +154,9 @@ The architecture of a relational database is such that it is much easier to rest
 ### 1.3.5 THE OBJECT-ORIENTED DATABASE MODEL
 > Defn. The *object-oriented database model* accommodates the storage of types of data that don't easily fit into the categories handled by relational databases.
 
-The object-oriented database management systems (OODBMS) were developed primarily to handle nontext, nonnumeric data such as graphical objects. A relational DBMS typically doesn't do a good job with such (so-called complex) data types. An OODBMS uses the same data model as object-oriented programming languages (e.g. Java, C++ and C\#) and works well with such languages.
+The OODBMSs were developed primarily to handle nontext, nonnumeric data such as graphical objects. A relational DBMS typically doesn't do a good job with such (so-called complex) data types. An OODBMS uses the same data model as object-oriented programming languages (e.g. Java, C++ and C\#) and works well with such languages.
+
+>Abbr. OODBMS: Object-oriented database management system
 
 ### 1.3.6 THE OBJECT-RELATIONAL DATABASE MODEL
 > Defn. The *object-relational model* is a merger of the relational and object models, and it is designed to capture the strengths of both, while leaving behind their major weaknesses.
@@ -212,13 +218,15 @@ you need to convince all the stakeholders that their cherished features that fal
 ### 2.1.3 OBTAINING STAKEHOLDER BUY-IN
 one way or another, you will have to convince all the stakeholders to agree on one set of features that will be included in the system you are planning to build. get it in writing. enumerate everything that will be provided in a formal Statement of Requirements, and then have every stakeholder sign off on it.
 
-## 2.2 TRANSLATING THE USERS' DATA MODEL TO A FORMAL ENTITY-RELATIONSHIP MODEL
-after you outline a coherent users’ data model in a clear, concise, concrete form, the real work begins. you must transform that model into a relational model that serves as the basis for a database. a helpful technique is to first translate it into one of several formal modeling systems that clarify the various entities in the users’ model and the relationships between them. probably the most popular of these formal modeling techniques is the Entity-Relationship (ER) model.
+## 2.2 TRANSLATING THE USERS' DATA MODEL TO A FORMAL ER MODEL
+after you outline a coherent users’ data model in a clear, concise, concrete form, the real work begins. you must transform that model into a relational model that serves as the basis for a database. a helpful technique is to first translate it into one of several formal modeling systems that clarify the various entities in the users’ model and the relationships between them. probably the most popular of these formal modeling techniques is the ER model.
+
+>Abbr. ER model: Entity-Relationship model.
 
 in order to design a relational database properly, you must have a good understanding of database structure.
   
-### 2.2.1 ENTITY-RELATIONSHIP MODELING TECHNIQUES
-in 1976, six years after Dr. Codd published the relational model, Dr. Peter Chen [published a paper](https://dl.acm.org/doi/10.1145/320434.320440) introducing the ER model. 
+### 2.2.1 ER MODELING TECHNIQUES
+in 1976, six years after Dr. Codd published the relational model, [Dr. Peter Chen](https://en.wikipedia.org/wiki/Peter_Chen) [published a paper](https://dl.acm.org/doi/10.1145/320434.320440) introducing the ER model. 
 
 >N.B. The ER model was an important factor in turning theory into practice because one of the strengths of the ER model is its generality. 
 
@@ -265,7 +273,7 @@ many-to-many relationships can be very confusing are not well represented by the
 
 >Tip. altough it is possible to build a system with such relationships, it is probably better in most cases to restructure the system in terms of binary relationships.
 
-### 2.2.2 DRAWING ENTITY-RELATIONSHIP DIAGRAMS
+### 2.2.2 DRAWING ER DIAGRAMS
 >Defn. systems represented by the ER model are unversally depicted in the form of diagrams. these are called *ER diagrams*.
 
 >Defn. for ER models, *cardinality* is the number of entity instances in a entity class.
@@ -339,3 +347,91 @@ even after you elimate all the many-to-many relationships in an ER model, there 
 
 ### 2.2.8 TRANSLATING AN ER MODEL INTO A RELATIONAL MODEL
 after you’re satisfied that your ER model is not only correct but economical and robust, the next step is to translate it into a relational model. the relational model is the basis for all relational DBMS.
+
+# CHAPTER 3 GETTING TO KNOW SQL
+in the early days of RDBMSs there was no standard language for perfomring relational operations on data. Differences in syntax and functionality made it impossible for a person using the laugauge of one RDBMS to operate on data that had been stored by another RDBMS.
+
+>Abbr. RDBMS: relational database management system 
+## 3.1 WHERE SQL CAME FROM
+The world was introduced to a fully realized RDBMS by a small startup company named Relational Software Inc. headed by Larry Ellison. Relational’s product, Oracle, is still the leading RDMS on the market today.
+
+In the process of developing its SQL/DS RDBMS product, IBM created a language, codenamed SEQUEL. 
+
+>Abbr. SEQUEL: Structured English QUery Language.
+
+IBM’s legal department flagged a possible copyright issue with the name SEQUEL. In response, management elected to drop the vowels.
+
+## 3.2 KNOWING WHAT SQL DOES
+SQL is a software tool designed to deal with relational database data. It does far more than just execute queries. You can also use SQL to create and destry databases, as well as modify their structure. You can add, modify and delete data with SQL. Even with all that capability, SQL is still considered only a *data sublanguage*.
+
+SQL is specifically designed for dealing with relational databases and thus does not include a number of features needed for creating useful applications programs. As a result, to create a complete application - one that handles queries as well as provides acceess to a database - you must write the code in one of the general-purpose languages and embed SQL statements within the pgoram whenever it communicates with the database.
+
+## 3.3 THE ISO/IEC SQL STANDARD
+In the early 1980s, IBM started using SQL in its first relational database product. Smaller companies in the DBMS industry in an effort to be compatible with IBM’s offering, modeled their languages after SQL: SQL became a de facto standard. In 1986 SQL became a standard du jure when when ANSI issued the SQL-86 standard. The SQL standard has been continually updated since then. Along the way, the standard became accepted internationally and became and ISO/IEC standard. the internationalization of the SQL standard means that database developers all over the wold talk to their databases in the same way.
+
+>Abbr. ANSI: American National Stards Institute.
+>Abbr. ISO: International Organization for Standardization.
+>Abbr. IEC: International Electrotechnical Commission.
+
+## 3.4 KNOWING WHAT SQL DOES NOT DO
+In the 1930s, computer scientist and mathematician [Alan Turing](https://en.wikipedia.org/wiki/Alan_Turing) defined a very simple machine that could perform any computation that could be preformed by any computer imaginable, regardless of how big and complex. this simple machine ahs come to be know as a *universal Turing machine*. Any computer that can be shown to be equivalent to a universal Turing machine is said to be Turing-complete. All modern computers are Turing-complete. Similarly, a computer language capable of expressing any possible computation is said to be Turing-complete. Practically all popular programming languages, including C, C#, C++, Java, and many more are Turing-complete. SQL is not.
+
+>N.B. Whereas ISO/IEC standard SQL is not Turing-complete, DBMS vendors have added extension to their versions with *are* Turing-complete. Thus the version of SQL that you are working iwth may or many not be Turing-complete.
+
+Because standard SQL is not Turing-complete, you cannot write an SQL program to perform a complex series of steps. On the other hand, programming languages such as C and Java do not have the data-manipulation facilites that SQL has, so you cannot write aprogram with them that will efficiently operate on database data. There are several ways to solve this dilemma:
+
+- Combine the two types of language by embedding SQL statements within a program written in a host languague such as C.
+- Have the C program make calls to SQL modules to perform data-manipulation functions.
+- Create a new language that includes SQL, but also incorporates those strucutres that would make the language Turing-complete.
+
+All three of these solutions are offered by one or another of the DBMS vendors.
+
+## 3.5 CHOOSING AND USING AN AVAILABLE DBMS IMPLEMENTATION
+A number of RDBMS are currently available and they all include a versionf SQL that adheres more or less closely to the ISO-IEC standard SQL.
+
+In addition, in most cases, the vendors do not *want* to be 100 percent compliant with the standard. They like to include useful features that are not in the stard in order to make their product more attractive to developers.
+
+___
+#### WHAT’S A DATABASE?
+To keep things clear in your mind, remember the following distinctions:
+
+- A *database* is a structured collection of integrated records. In other words, it it the data, but organized in a structured way.
+- A *database application* is a computer program that operates on a database, which enables users to maintain the database and query it for needed information.
+- A *DBMS* is the engine that controls acess to a database.
+
+Databases applications must work through a DBMS in order to access the database.
+___
+
+### 3.5.1 MICROSOFT ACCESS
+Microsoft Access is an entry-level DBMS with which developers can build relatively small and simple databases and database applications. You can build databases and database applications using Access without ever seeing SQL.
+
+Access does include an implementation of SQL and you can use it to query your databases but Microsoft does not encourage its use. Instead they prefer that you use the graphical database creation and manipulation tools and use the query-by-example interface to ask questions of your database.
+
+Microsft Access runs under any of the Microsoft Windows operating systems as well as Apple’s OS X but not under Linux or any other non-Microsfot operating system.
+
+### 3.5.2 MICROSOFT SQL SERVER
+Microsoft SQL Server is Microsoft entry into the enterprise database market. It runs only under one the various Microsft Windows operating systems. Unlike Microsoft Access, SQL Server requires a high level of expertise in order to use it at all. Users interact with SQL Server using T-SQL which adheres quite closely to the syntax of ISO/IEC standard SQL.
+
+>Abbr. T-SQL: Transact-SQL.
+### 3.5.3 IBM DB2
+DB2 is a flexible product that runs on Windows and Linux PCs on the low end all the way to IBM’s largest mainframes. As with Microsft SQL Server, to use DB2 effectively, a developer must have received extensive training and considerable hands-on experience.
+
+### 3.5.4 ORACLE DATABASE
+Oracle Database is another DBMS that runs on PCs running the running the WIndoes, Linux or MAC OS X operating system. Oracle SQL is highly compliant with SQL:2016.
+
+### 3.5.5 SYBASE SQL ANYWHERE
+Sybase SQL Anywhere is a high-capacity, high-performance DMBS compatible with databases originally built with Microsft SQL Server, IBM DB2, Oracle and MySQL as well as a wide variety of popular application-development languages. it features a self-tuning query optimizer and dynamic cache sizing.
+
+>N.B. Tuning quieries can make a big difference in their executing time.
+
+### 3.5.6 MYSQL
+MySQL is the most widely used open source DBMS. 
+
+One amazing feature of MySQL is that it offers multiple ways of storing and managing data which they call *sotrage engines*. The most feature-rich of these it eh InnoDB storage engine which provides many of the advanced database features found in commerical database such as the Microsfot SQL Server. The compliance of the MySQL InnoDB storage engine is coparable to that of Microsfot SQL Server.
+
+Another pupular storage engine is the MyISAM storage engine, which is particularly noted ofr its speed, especially for simple data queries, making it a popular choice for web-based applications.
+
+>Tip. Since the purchase of MySQL by Oracle, the original developers of MySQL have started a new open-source database project anmed MariaDB which is mostly a clone of MySQL with just a few feature difference.
+
+### 3.5.7 POSTGRESQL  
+PostgreSQL is another open source DBMS and it is generally considered to be more robsut than MySQL and more capable of supporting large enterprise-wide applications.

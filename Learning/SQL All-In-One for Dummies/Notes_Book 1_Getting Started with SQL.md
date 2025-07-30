@@ -1,7 +1,7 @@
 # CHAPTER 1 UNDERSTANDING RELATIONAL DATABASES
 SQL is the international standard language used in conjuction with relational databases. Relational databases are the dominant form of data storage throught the world.
 
-Different data storage strategies have been used over the eyars, each having their own strengths and weaknesses. The strengths of the relational model overshadows its weaknesses.
+Different data storage strategies have been used over the years, each having their own strengths and weaknesses. The strengths of the relational model overshadows its weaknesses.
 
 ## 1.1 UNDERSTANDING WHY TODAY'S DATABASES ARE BETTER THAN EARLY DATABASES
 Vannervar Bush conceived the idea of a database in 1945, even before the first electronic computer was built. Practical implementations of databases did not appear for a number of years after that.
@@ -349,11 +349,12 @@ even after you elimate all the many-to-many relationships in an ER model, there 
 after you’re satisfied that your ER model is not only correct but economical and robust, the next step is to translate it into a relational model. the relational model is the basis for all relational DBMS.
 
 # CHAPTER 3 GETTING TO KNOW SQL
-in the early days of RDBMSs there was no standard language for perfomring relational operations on data. Differences in syntax and functionality made it impossible for a person using the laugauge of one RDBMS to operate on data that had been stored by another RDBMS.
+in the early days of RDBMSs there was no standard language for performing relational operations on data. Differences in syntax and functionality made it impossible for a person using the language of one RDBMS to operate on data that had been stored by another RDBMS.
 
->Abbr. RDBMS: relational database management system 
+>Abbr. RDBMS: relational database management system.
+ 
 ## 3.1 WHERE SQL CAME FROM
-The world was introduced to a fully realized RDBMS by a small startup company named Relational Software Inc. headed by Larry Ellison. Relational’s product, Oracle, is still the leading RDMS on the market today.
+The world was introduced to a fully realized RDBMS by a small startup company named Relational Software Inc. headed by Larry Ellison. Relational’s product, Oracle, is still the leading RDBMS on the market today.
 
 In the process of developing its SQL/DS RDBMS product, IBM created a language, codenamed SEQUEL. 
 
@@ -362,34 +363,36 @@ In the process of developing its SQL/DS RDBMS product, IBM created a language, c
 IBM’s legal department flagged a possible copyright issue with the name SEQUEL. In response, management elected to drop the vowels.
 
 ## 3.2 KNOWING WHAT SQL DOES
-SQL is a software tool designed to deal with relational database data. It does far more than just execute queries. You can also use SQL to create and destry databases, as well as modify their structure. You can add, modify and delete data with SQL. Even with all that capability, SQL is still considered only a *data sublanguage*.
+SQL is a software tool designed to deal with relational database data. It does far more than just execute queries. You can also use SQL to create and destroy databases, as well as modify their structure. You can add, modify and delete data with SQL. Even with all that capability, SQL is still considered only a *data sublanguage*.
 
-SQL is specifically designed for dealing with relational databases and thus does not include a number of features needed for creating useful applications programs. As a result, to create a complete application - one that handles queries as well as provides acceess to a database - you must write the code in one of the general-purpose languages and embed SQL statements within the pgoram whenever it communicates with the database.
+SQL is specifically designed for dealing with relational databases and thus does not include a number of features needed for creating useful applications programs. As a result, to create a complete application - one that handles queries as well as provides access to a database - you must write the code in one of the general-purpose languages and embed SQL statements within the program whenever it communicates with the database.
 
 ## 3.3 THE ISO/IEC SQL STANDARD
-In the early 1980s, IBM started using SQL in its first relational database product. Smaller companies in the DBMS industry in an effort to be compatible with IBM’s offering, modeled their languages after SQL: SQL became a de facto standard. In 1986 SQL became a standard du jure when when ANSI issued the SQL-86 standard. The SQL standard has been continually updated since then. Along the way, the standard became accepted internationally and became and ISO/IEC standard. the internationalization of the SQL standard means that database developers all over the wold talk to their databases in the same way.
 
->Abbr. ANSI: American National Stards Institute.
 >Abbr. ISO: International Organization for Standardization.
 >Abbr. IEC: International Electrotechnical Commission.
 
+In the early 1980s, IBM started using SQL in its first relational database product. Smaller companies in the DBMS industry in an effort to be compatible with IBM’s offering, modeled their languages after SQL: SQL became a de facto standard. In 1986 SQL became a standard du jure when when ANSI issued the SQL-86 standard. The SQL standard has been continually updated since then. Along the way, the standard became accepted internationally and became an ISO/IEC standard. The internationalization of the SQL standard means that database developers all over the world talk to their databases in the same way.
+
+>Abbr. ANSI: American National Standards Institute.
+
 ## 3.4 KNOWING WHAT SQL DOES NOT DO
-In the 1930s, computer scientist and mathematician [Alan Turing](https://en.wikipedia.org/wiki/Alan_Turing) defined a very simple machine that could perform any computation that could be preformed by any computer imaginable, regardless of how big and complex. this simple machine ahs come to be know as a *universal Turing machine*. Any computer that can be shown to be equivalent to a universal Turing machine is said to be Turing-complete. All modern computers are Turing-complete. Similarly, a computer language capable of expressing any possible computation is said to be Turing-complete. Practically all popular programming languages, including C, C#, C++, Java, and many more are Turing-complete. SQL is not.
+In the 1930s, computer scientist and mathematician [Alan Turing](https://en.wikipedia.org/wiki/Alan_Turing) defined a very simple machine that could perform any computation that could be performed by any computer imaginable, regardless of how big and complex. this simple machine has come to be known as a *universal Turing machine*. Any computer that can be shown to be equivalent to a universal Turing machine is said to be *Turing-complete*. All modern computers are Turing-complete. Similarly, a computer language capable of expressing any possible computation is said to be Turing-complete. Practically all popular programming languages, including C, C#, C++, Java, and many more are Turing-complete. SQL is not.
 
->N.B. Whereas ISO/IEC standard SQL is not Turing-complete, DBMS vendors have added extension to their versions with *are* Turing-complete. Thus the version of SQL that you are working iwth may or many not be Turing-complete.
+>N.B. Whereas ISO/IEC standard SQL is not Turing-complete, DBMS vendors have added extension to their versions wich *are* Turing-complete. Thus the version of SQL that you are working with may or many not be Turing-complete.
 
-Because standard SQL is not Turing-complete, you cannot write an SQL program to perform a complex series of steps. On the other hand, programming languages such as C and Java do not have the data-manipulation facilites that SQL has, so you cannot write aprogram with them that will efficiently operate on database data. There are several ways to solve this dilemma:
+Because standard SQL is not Turing-complete, you cannot write an SQL program to perform a complex series of steps. On the other hand, programming languages such as C and Java do not have the data-manipulation facilites that SQL has, so you cannot write a program with them that will efficiently operate on database data. There are several ways to solve this dilemma:
 
-- Combine the two types of language by embedding SQL statements within a program written in a host languague such as C.
+- Combine the two types of language by embedding SQL statements within a program written in a host language such as C.
 - Have the C program make calls to SQL modules to perform data-manipulation functions.
-- Create a new language that includes SQL, but also incorporates those strucutres that would make the language Turing-complete.
+- Create a new language that includes SQL, but also incorporates those structures that would make the language Turing-complete.
 
 All three of these solutions are offered by one or another of the DBMS vendors.
 
 ## 3.5 CHOOSING AND USING AN AVAILABLE DBMS IMPLEMENTATION
 A number of RDBMS are currently available and they all include a versionf SQL that adheres more or less closely to the ISO-IEC standard SQL.
 
-In addition, in most cases, the vendors do not *want* to be 100 percent compliant with the standard. They like to include useful features that are not in the stard in order to make their product more attractive to developers.
+In addition, in most cases, the vendors do not *want* to be 100 percent compliant with the standard. They like to include useful features that are not in the standard in order to make their product more attractive to developers.
 
 ___
 #### WHAT’S A DATABASE?
@@ -397,7 +400,7 @@ To keep things clear in your mind, remember the following distinctions:
 
 - A *database* is a structured collection of integrated records. In other words, it it the data, but organized in a structured way.
 - A *database application* is a computer program that operates on a database, which enables users to maintain the database and query it for needed information.
-- A *DBMS* is the engine that controls acess to a database.
+- A *DBMS* is the engine that controls access to a database.
 
 Databases applications must work through a DBMS in order to access the database.
 ___
@@ -407,31 +410,31 @@ Microsoft Access is an entry-level DBMS with which developers can build relative
 
 Access does include an implementation of SQL and you can use it to query your databases but Microsoft does not encourage its use. Instead they prefer that you use the graphical database creation and manipulation tools and use the query-by-example interface to ask questions of your database.
 
-Microsft Access runs under any of the Microsoft Windows operating systems as well as Apple’s OS X but not under Linux or any other non-Microsfot operating system.
+Microsft Access runs under any of the Microsoft Windows operating systems as well as Apple’s OS X but not under Linux or any other non-Microsoft operating system.
 
 ### 3.5.2 MICROSOFT SQL SERVER
-Microsoft SQL Server is Microsoft entry into the enterprise database market. It runs only under one the various Microsft Windows operating systems. Unlike Microsoft Access, SQL Server requires a high level of expertise in order to use it at all. Users interact with SQL Server using T-SQL which adheres quite closely to the syntax of ISO/IEC standard SQL.
+Microsoft SQL Server is Microsoft’s entry into the enterprise database market. It runs only under one the various Microsft Windows operating systems. Unlike Microsoft Access, SQL Server requires a high level of expertise in order to use it at all. Users interact with SQL Server using T-SQL which adheres quite closely to the syntax of ISO/IEC standard SQL.
 
 >Abbr. T-SQL: Transact-SQL.
 ### 3.5.3 IBM DB2
 DB2 is a flexible product that runs on Windows and Linux PCs on the low end all the way to IBM’s largest mainframes. As with Microsft SQL Server, to use DB2 effectively, a developer must have received extensive training and considerable hands-on experience.
 
 ### 3.5.4 ORACLE DATABASE
-Oracle Database is another DBMS that runs on PCs running the running the WIndoes, Linux or MAC OS X operating system. Oracle SQL is highly compliant with SQL:2016.
+Oracle Database is another DBMS that runs on PCs running the running the Windows, Linux or MAC OS X operating system. Oracle SQL is highly compliant with SQL:2016.
 
 ### 3.5.5 SYBASE SQL ANYWHERE
-Sybase SQL Anywhere is a high-capacity, high-performance DMBS compatible with databases originally built with Microsft SQL Server, IBM DB2, Oracle and MySQL as well as a wide variety of popular application-development languages. it features a self-tuning query optimizer and dynamic cache sizing.
+Sybase SQL Anywhere is a high-capacity, high-performance DBMS compatible with databases originally built with Microsft SQL Server, IBM DB2, Oracle and MySQL as well as a wide variety of popular application-development languages. It features a self-tuning query optimizer and dynamic cache sizing.
 
->N.B. Tuning quieries can make a big difference in their executing time.
+>N.B. Tuning queries can make a big difference in their executing time.
 
 ### 3.5.6 MYSQL
 MySQL is the most widely used open source DBMS. 
 
-One amazing feature of MySQL is that it offers multiple ways of storing and managing data which they call *sotrage engines*. The most feature-rich of these it eh InnoDB storage engine which provides many of the advanced database features found in commerical database such as the Microsfot SQL Server. The compliance of the MySQL InnoDB storage engine is coparable to that of Microsfot SQL Server.
+One amazing feature of MySQL is that it offers multiple ways of storing and managing data which they call *storage engines*. The most feature-rich of these is the InnoDB storage engine which provides many of the advanced database features found in commerical database such as the Microsoft SQL Server. The compliance of the MySQL InnoDB storage engine is comparable to that of Microsoft SQL Server.
 
-Another pupular storage engine is the MyISAM storage engine, which is particularly noted ofr its speed, especially for simple data queries, making it a popular choice for web-based applications.
+Another popular storage engine is the MyISAM storage engine, which is particularly noted for its speed, especially for simple data queries, making it a popular choice for web-based applications.
 
->Tip. Since the purchase of MySQL by Oracle, the original developers of MySQL have started a new open-source database project anmed MariaDB which is mostly a clone of MySQL with just a few feature difference.
+>Tip. Since the purchase of MySQL by Oracle, the original developers of MySQL have started a new open-source database project named MariaDB which is mostly a clone of MySQL with just a few feature difference.
 
 ### 3.5.7 POSTGRESQL  
-PostgreSQL is another open source DBMS and it is generally considered to be more robsut than MySQL and more capable of supporting large enterprise-wide applications.
+PostgreSQL is another open source DBMS and it is generally considered to be more robus                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   t than MySQL and more capable of supporting large enterprise-wide applications.
